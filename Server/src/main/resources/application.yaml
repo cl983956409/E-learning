@@ -1,0 +1,13 @@
+server:
+#  address:
+  port: 8080
+  servlet:
+    context-path: /eLearning
+
+spring:
+  application: eLearning
+  # 数据库
+  datasource:
+    url:
+    password:
+    username:
