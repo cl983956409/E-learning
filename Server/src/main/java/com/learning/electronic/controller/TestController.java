@@ -1,12 +1,10 @@
 package com.learning.electronic.controller;
 
+import com.learning.electronic.bean.login.LoginReqBo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 /**
  * @author 程龙[chenglonghy]
@@ -17,14 +15,24 @@ import java.security.Principal;
 @RestController
 public class TestController {
 
-    @GetMapping(value = "/test")
-    public void test() {
-        log.info("调用成功");
+    @GetMapping(value = "/testUser")
+    public void testUser() {
+        log.info("testUser调用成功");
     }
 
-    @GetMapping("/user")
-    public String user(@AuthenticationPrincipal Principal principal, Model model) {
-        model.addAttribute("username", principal.getName());
+    @GetMapping(value = "/testAdmin")
+    public void testAdmin() {
+        log.info("testAdmin调用成功");
+    }
+
+    @GetMapping(value = "/testIgnore")
+    public void testIgnore() {
+        log.info("testIgnore调用成功");
+    }
+
+    @PostMapping("/user")
+    public String user(LoginReqBo test) {
+
         return "user/user";
     }
 }

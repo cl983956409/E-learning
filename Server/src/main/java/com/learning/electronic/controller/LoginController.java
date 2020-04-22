@@ -18,13 +18,12 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "/login")
 public class LoginController {
 
     @Resource
     private LoginService loginService;
 
-    @PostMapping(value = "/auth")
+    @PostMapping(value = "/login")
     public Boolean login(@RequestBody LoginReqBo loginReqBo) {
         //log.info("用户名：【" + loginReqBo.getUsername() + "】、密  码：【"+loginReqBo.getPassword()+"】");
         log.debug("登录校验");
