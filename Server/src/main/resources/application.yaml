@@ -1,6 +1,6 @@
 server:
 #  address:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /eLearning
 
@@ -8,6 +8,15 @@ spring:
   application: eLearning
   # 数据库
   datasource:
-    url:
-    password:
-    username:
+    url: jdbc:mysql://172.28.19.88:3306/cltest?useSSL=false
+    password: dhome
+    username: dhome
+    driver-class-name: com.mysql.jdbc.Driver
+
+#Mybatis Config
+mybatis:
+  typeAliasesPackage: com.learning.electronic.dao
+  mapperLocations: classpath:mybatis/**/*.xml
+logging:
+  level:
+    com.learning.electronic: debug

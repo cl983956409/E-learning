@@ -40,11 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")//form中密码输入框input的name名，不修改的话默认是password
                 //.defaultSuccessUrl("/test")//登陆成功后默认跳转的路径
                 .and()
-                ////配置注销
-                //.logout()
-                //.logoutUrl("/logout")
-                //.logoutSuccessUrl("/login/auth")
-                //.and()
+        ////配置注销
+        //.logout()
+        //.logoutUrl("/logout")
+        //.logoutSuccessUrl("/login/auth")
+        //.and()
         ;
     }
 
