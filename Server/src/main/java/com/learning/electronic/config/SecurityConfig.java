@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //http是根对象，其下有4个配置项：authorizeRequests、formLogin、logout、csrf;每个配置项使用and方法分隔连接;
         http
                 .authorizeRequests()//开启登录配置
+                .antMatchers("/getVercode","/login/test").permitAll()
                 .antMatchers("/user/admin").hasRole("admin")//表示访问 /hello 这个接口，需要具备 admin 这个角色
                 //.antMatchers("/testUser").hasRole("user")
                 //.antMatchers("/testAdmin").hasRole("admin")
