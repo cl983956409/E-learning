@@ -118,6 +118,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.close();
                 })
                 .and()
+                .rememberMe().key("chenglonghy")
+                .and()
                 .logout()
                 .logoutUrl("/logout")//注销接口
                 //.logoutSuccessUrl("/login/logout")//注销成功跳转接口
