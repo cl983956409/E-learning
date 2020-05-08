@@ -1,6 +1,7 @@
 package com.learning.electronic.dao.user;
 
-import com.learning.electronic.bean.user.UserInfoBo;
+import com.learning.electronic.bean.login.SignInReqBo;
+import com.learning.electronic.bean.user.UserInfo;
 
 import java.sql.SQLException;
 
@@ -12,6 +13,8 @@ import java.sql.SQLException;
  */
 public interface UserDao {
 
+    int insertUserInfo(SignInReqBo signInReqBo) throws SQLException;
+
     /**
      * 根据用户名查询用户信息
      *
@@ -19,5 +22,6 @@ public interface UserDao {
      * @return
      * @throws SQLException
      */
-    UserInfoBo selectUserInfo(String name) throws SQLException;
+    UserInfo selectUserInfo(String name) throws SQLException;
+
 }

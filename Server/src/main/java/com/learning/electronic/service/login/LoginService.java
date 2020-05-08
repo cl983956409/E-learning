@@ -1,6 +1,8 @@
 package com.learning.electronic.service.login;
 
+import com.learning.electronic.bean.component.RespObject;
 import com.learning.electronic.bean.login.LoginReqBo;
+import com.learning.electronic.bean.login.SignInReqBo;
 
 /**
  * @author chenglonghy
@@ -10,11 +12,5 @@ import com.learning.electronic.bean.login.LoginReqBo;
  */
 public interface LoginService {
 
-    /**
-     * 校验用户信息
-     *
-     * @param loginReqBo
-     * @return
-     */
-    public boolean verifyUserPermissions(LoginReqBo loginReqBo);
+    RespObject signIn(SignInReqBo signInReqBo);
 }

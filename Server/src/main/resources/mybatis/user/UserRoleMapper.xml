@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.learning.electronic.dao.user.UserRoleDao">
+    <resultMap id="Base_Result_Map" type="com.learning.electronic.bean.user.Role">
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="USER_ID" property="userId" jdbcType="INTEGER"/>
+        <result column="ROLE" property="role" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID , USER_ID , ROLE
+    </sql>
+
+    <insert id="insertUserRole">
+        insert into `user_roles` (`USER_ID`,`ROLE`,`GMT_CREATE`)
+        values (#{id},#{role},NOW())
+    </insert>
+
+    <select id="selectUserRoles" parameterType="java.lang.Integer"
+            resultMap="Base_Result_Map">
+        select <include refid="Base_Column_List" />
+        from `user_roles`
+        where `USER_ID`=#{id}
+    </select>
+
+</mapper>

@@ -3,8 +3,28 @@
         PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.learning.electronic.dao.user.UserDao">
-    <select id="selectUserInfo" parameterType="java.lang.String" resultType="com.learning.electronic.bean.user.UserInfoBo">
-        select * from user
-        where `name`=#{name}
+    <resultMap id="Base_Result_Map" type="com.learning.electronic.bean.user.UserInfo">
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="USER_NAME" property="username" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="ACCOUNT_NON_EXPIRED" property="accountNonExpired" jdbcType="VARCHAR"/>
+        <result column="ACCOUNT_NON_LOCKED" property="accountNonLocked" jdbcType="VARCHAR"/>
+        <result column="CREDENTIALS_NON_EXPIRED" property="credentialsNonExpired" jdbcType="VARCHAR"/>
+        <result column="ENABLED" property="enabled" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID , USER_NAME , PASSWORD , ACCOUNT_NON_EXPIRED , ACCOUNT_NON_LOCKED , CREDENTIALS_NON_EXPIRED , ENABLED
+    </sql>
+    <insert id="insertUserInfo" parameterType="com.learning.electronic.bean.login.SignInReqBo" useGeneratedKeys="true" keyProperty="id">
+        insert into `user` (`USER_NAME`,`PASSWORD`,`GMT_CREATE`, `ACCOUNT_NON_EXPIRED` , `ACCOUNT_NON_LOCKED` , `CREDENTIALS_NON_EXPIRED` , `ENABLED`)
+        values (#{username},#{pass},NOW(),"true","true","true","true")
+    </insert>
+
+    <select id="selectUserInfo" parameterType="java.lang.String"
+            resultMap="Base_Result_Map">
+        select <include refid="Base_Column_List" />
+        from `user`
+        where `USER_NAME`=#{name}
     </select>
+
 </mapper>

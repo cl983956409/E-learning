@@ -12,7 +12,11 @@ spring:
     password: dhome
     username: dhome
     driver-class-name: com.mysql.jdbc.Driver
-
+  #redis
+  redis:
+    host: 172.28.19.80
+    port: 6380
+    password: redis_dhome
 #Mybatis Config
 mybatis:
   typeAliasesPackage: com.learning.electronic.dao
