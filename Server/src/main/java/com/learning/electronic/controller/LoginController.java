@@ -66,7 +66,7 @@ public class LoginController {
     }
 
     @GetMapping(value = "/getVercode")
-    public void getVercode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void getVercode(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         resp.setDateHeader("Expires", 0L);
         resp.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         resp.addHeader("Cache-Control", "post-check=0, pre-check=0");
@@ -77,9 +77,7 @@ public class LoginController {
         BufferedImage image = vc.getImage();
         String text = vc.getText();
         HttpSession session = req.getSession();
-        session.setAttribute("index_code", text);
+        session.setAttribute("verify_code", text);
         VerifyCode.output(image, resp.getOutputStream());
-        //todo 需要匹配一个id，将id+vercode一起存储，登录时用作校验
-        //redisUtils.set(id,text,30);
     }
 }

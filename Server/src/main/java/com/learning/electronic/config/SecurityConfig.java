@@ -27,6 +27,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return roleHierarchy;
     }
 
+    @Resource
+    VerifyCodeFilter verifyCodeFilter;
+
     /**
      * 配置登录验证逻辑
      */
@@ -68,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         //添加自定义过滤器
-        //http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
 
         //http是根对象，其下有4个配置项：authorizeRequests、formLogin、logout、csrf;每个配置项使用and方法分隔连接;
         http
@@ -119,6 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .and()
                 .rememberMe().key("chenglonghy")
+                //.tokenRepository(jdbcTokenRepository())
                 .and()
                 .logout()
                 .logoutUrl("/logout")//注销接口
@@ -197,8 +202,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     UserServiceImpl userService;
 
+    /*
+    登录认证
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
+
 }
